@@ -54,7 +54,8 @@
     height: 100%;
     align-items: center;
     justify-content: center;
-    background-color: rgb(201 201 201 / 50%);
+    /* background-color: rgb(201 201 201 / 50%); */
+    background-color: rgb(255 255 255 / 80%);
     font-weight: 600;
     font-size: 1em;
     color: #000000;
@@ -71,6 +72,7 @@
         #about, #skills, #project, #contact{
             
             padding: 6em;
+            display: grid;
         }
         #about{
             background-color: #eaf4f1;
@@ -84,8 +86,10 @@
     padding-bottom: 0.2em;
         }
         .box{
-            display: flex;
-            margin: 3em 1em;
+            
+    display: grid;
+    
+            margin: 4em 4em;
         }
         .me{
             background-image: url(img/me2.jpg);
@@ -95,15 +99,41 @@
             height: 150px;
             width: 150px;
         }
+        .about-box{
+            grid-template-columns: 1fr 6fr;
+            align-items: center;
+            column-gap: 2em;
+           
+        }
+        #skills{
+            background:white;
+        }
+        .skills-box{
+            grid-template-columns: auto auto auto auto;
+    align-items: center;
+    justify-items: center;
+    row-gap: 2em;
+    width: 60%;
+   
+    justify-self: center;
+    background-color: white;
+    height: 350px;
+    
+        }
+        #project{
+            background: #e7ebf5;
+        }
         .project-box{
             display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 4em;
     height: 380px;
+    
         }
         .pj{
             display: grid;
-    grid-template-rows: 0fr auto;
+    grid-template-rows: 0fr auto 0fr;
+    ;
         }
         .pj-msg{
             margin-bottom: 1em;
@@ -124,15 +154,27 @@
         }
         .pj1{
             background-image: url(img/eol.PNG);
+            background-color: white
     
         }
         .pj2{
             background-image: url(img/orkney.PNG);
+            background-color: white
     
         }
         .contact-box{
             display: flex;
             flex-direction: column;
+        }
+        img{
+            width: 90px
+        }
+        footer{
+            text-align: center;
+    font-size: 0.8em;
+    background-color: #807e7e;
+    height: 6em;
+    line-height: 6em;
         }
 
         /* 모달 */
@@ -168,14 +210,25 @@
     background: rgba(0, 0, 0, 0.5);
     z-index: -1;
         }
+        .svg{
+            width: 2em;
+            margin: 1em 0.7em 0 0.7em;
+        }
+        .svg:hover{
+            width: 2.4em;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .icon{
+            display: flex;
+
+    justify-content: center
+        }
 
         /* 모달 플젝내용 이미지 삽입 */
         .pj-detail{  
-            margin: auto;
-    background-repeat: no-repeat;
-    background-size: 100%;
-    width: 90%;
-    height: 100%;
+            width: 100%;
+    display: block;
         }
     </style>
 </head>
@@ -187,9 +240,9 @@
         </div>
         <div class="modal-content content2">
             <h1>Orkeny 가구 쇼핑몰</h1>
-            <div class="pj-detail" style="background-image: url(img/final-1.png);"></div>
-            <div class="pj-detail" style="background-image: url(img/final-2.png);"></div>
-            <div class="pj-detail" style="background-image: url(img/final-3.png);"></div>
+            <img class="pj-detail" src="img/final-1.png" alt="">
+            <img class="pj-detail" src="img/final-2.png" alt="">
+            
         </div>
         <div class="modal-layer"></div>
     </div>
@@ -226,8 +279,15 @@
         </div>
         <div id="skills">
             <div class="title">Skills</div>
-            <div class="skills-box">
-               
+            <div class="box skills-box">
+                <img src="img/html.PNG">
+                <img src="img/css.PNG">
+                <img src="img/js.PNG">
+                <img src="img/jquery.PNG">
+                <img src="img/java.PNG">
+                <img src="img/spring.PNG">
+                <img src="img/oracle.PNG">
+                <img src="img/github.PNG">
             </div>
             
         </div>
@@ -239,16 +299,16 @@
                         Servlet/Jsp를 활용하여 제작한<br>
                         밀키트 쇼핑몰 애플리케이션
                     </div>
-                    <div class="pj-img pj1"></div>
+                    <div class="pj-img pj1 pj1-open"></div>
+                    <div class="icon"><img class="svg pj1-open" src="img/info.svg"><img onclick="window.open('https://github.com/hyunwoo-200924/SemiProject.git')" class="svg" src="img/github.svg"></div>
                 </div>
                 <div class="pj">
                     <div class="pj-msg">
                         Spring을 활용하여 제작한<br>
                         가구쇼핑몰 반응형 애플리케이션
                     </div>
-                    <div class="pj-img pj2">
-
-                    </div>
+                    <div class="pj-img pj2 pj2-open"></div>
+                    <div class="icon"><img class="svg pj2-open" src="img/info.svg"><img onclick="window.open('https://github.com/ui0426/Orkney.git')" class="svg" src="img/github.svg"><img onclick="window.open('http://www.orkney.tk:8080/orkney/')" class="svg" src="img/home.svg"></div>
                 </div>
             </div>
 
@@ -267,9 +327,9 @@
     <footer>Copyright ⓒ 2021 이하영 All Rights Reserved.</footer>
 </body>
 <script>
-    $('.pj1,.pj2').click(e=>{
+    $('.pj1-open,.pj2-open').click(e=>{
         $('#modal').fadeIn();
-        if($(e.target).hasClass('pj1')){
+        if($(e.target).hasClass('pj1-open')){
             $('.content1').css('display','block');    
         } else {
             $('.content2').css('display','block');
